@@ -42,7 +42,7 @@ All data is stored locally using the **Room persistence library (SQLite abstract
 - **Profile Management:** View & edit user profile
 
 ---
-## 🏗️ System Architecture
+## System Architecture
 
 ExpenseMate follows a **layered architecture**:
 
@@ -53,7 +53,7 @@ ExpenseMate follows a **layered architecture**:
 
 ---
 
-## 🗄️ Database Design
+## Database Design
 
 ### Entities
 - **User:** `userId`, `name`, `email`, `passwordHash`, `phone`  
@@ -65,4 +65,35 @@ ExpenseMate follows a **layered architecture**:
 - One-to-many: **User → Budgets**
 
 ---
+
+---
+
+##  Security
+
+- Passwords stored as **hashed values** (not plain text)  
+- All queries scoped to **logged-in userId**  
+- No cross-user data access  
+
+---
+
+## User Roles
+
+ExpenseMate currently supports a single application role: **Normal User**.  
+No administrative role is implemented in the current version, since the app is designed as a **single-user, on-device finance tracker** rather than a multi-tenant managed system.
+
+### Normal User Capabilities
+A registered user can:
+- Register a new account  
+- Log in and log out  
+- Manage their own profile  
+- Add, edit, and delete their own transactions  
+- View only their own transactions  
+- Search and filter only within their own data  
+- Create and manage their own budgets  
+- View summaries computed from their own data  
+
+>  **Data Isolation:**  
+Every query in the data layer is scoped by the logged-in `userId`, ensuring that a user can **never read or modify another user’s records** through normal application flows.
+
+
 
