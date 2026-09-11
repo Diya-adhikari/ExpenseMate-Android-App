@@ -42,3 +42,27 @@ All data is stored locally using the **Room persistence library (SQLite abstract
 - **Profile Management:** View & edit user profile
 
 ---
+## 🏗️ System Architecture
+
+ExpenseMate follows a **layered architecture**:
+
+- **UI Layer:** XML layouts (screens, buttons, RecyclerViews)  
+- **Activity / Adapter Layer:** Handles user interactions & binds data to views  
+- **Database Access Layer (DAO):** CRUD + query methods  
+- **Room Database:** Stores entities (User, Transaction, Budget)  
+
+---
+
+## 🗄️ Database Design
+
+### Entities
+- **User:** `userId`, `name`, `email`, `passwordHash`, `phone`  
+- **Transaction:** `transactionId`, `userId`, `type`, `amount`, `category`, `description`, `date`, `paymentMethod`  
+- **Budget:** `budgetId`, `userId`, `category`, `amount`, `month`  
+
+### Relationships
+- One-to-many: **User → Transactions**  
+- One-to-many: **User → Budgets**
+
+---
+
